@@ -21,5 +21,35 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-  return router;
+
+router.post("/insert", (req, res) => {
+  let insert = `INSERT INTO line_items (service_id, text)
+  VALUES ('${req.body.service_id}', '${req.body.text}') RETURNING *`;
+  db.query(insert)
+    .then(data => {
+      const new_line_item = data.rows[0];
+      res.json({ new_line_item });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+
+router.post("/delete", (req, res) => {
+  db.query(`DELETE FROM line_items WHERE id = '${req.body.id}' RETURNING *;`)
+    .then(data => {
+      const deleted_line_item = data.rows[0];
+      res.json({ deleted_line_item});
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+
+return router;
+
 };
