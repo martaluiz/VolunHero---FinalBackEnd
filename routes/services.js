@@ -5,94 +5,88 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * from services;`)
-      .then(data => {
+      .then((data) => {
         const services = data.rows;
+        res.set("Access-Control-Allow-Origin", "*");
         res.json({ services });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
-
-    router.get("/", (req, res) => {
-      db.query(`SELECT * from services where voluteer_user_id is null;`)
-        .then(data => {
-          const services = data.rows;
-          res.json({ services });
-        })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
-    });
-
-
+  router.get("/", (req, res) => {
+    db.query(`SELECT * from services where voluteer_user_id is null;`)
+      .then((data) => {
+        const services = data.rows;
+        res.set("Access-Control-Allow-Origin", "*");
+        res.json({ services });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
 
   router.get("/:userId", (req, res) => {
-    db.query(`select users.name, (services.*)
+    db.query(
+      `select users.name, (services.*)
      from services
      join users ON users.id = user_id
-     where users.id = ${req.params.userId} and is_completed = false;`)
-      .then(data => {
+     where users.id = ${req.params.userId} and is_completed = false;`
+    )
+      .then((data) => {
         const services = data.rows;
+        res.set("Access-Control-Allow-Origin", "*");
         res.json({ services });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
-
 
   router.post("/create", (req, res) => {
     let insert = `insert into services (user_id, category_id, description)
     VALUES( ${req.body.user_id}, ${req.body.category_id}, '${req.body.description}') RETURNING *`;
     db.query(insert)
-      .then(data => {
+      .then((data) => {
         const new_service = data.rows[0];
+        res.set("Access-Control-Allow-Origin", "*");
         res.json({ new_service });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
   router.post("/delete", (req, res) => {
     db.query(`DELETE FROM services WHERE id = ${req.body.id}RETURNING *;`)
-      .then(data => {
+      .then((data) => {
         const deleted_service = data.rows[0];
+        res.set("Access-Control-Allow-Origin", "*");
         res.json({ deleted_service });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
   router.post("/complete", (req, res) => {
-    db.query(`UPDATE services SET is_completed = true WHERE id = ${req.body.id} RETURNING *;`)
-       .then(data => {
+    db.query(
+      `UPDATE services SET is_completed = true WHERE id = ${req.body.id} RETURNING *;`
+    )
+      .then((data) => {
         const updated_service = data.rows[0];
+        res.set("Access-Control-Allow-Origin", "*");
         res.json({ updated_service });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 

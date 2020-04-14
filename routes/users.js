@@ -13,6 +13,7 @@ module.exports = (db) => {
     db.query(`SELECT * FROM users;`)
       .then((data) => {
         const users = data.rows;
+        res.set("Access-Control-Allow-Origin", "*");
         res.json({ users });
       })
       .catch((err) => {
@@ -28,6 +29,7 @@ module.exports = (db) => {
     )
       .then((data) => {
         const users = data.rows;
+        res.set("Access-Control-Allow-Origin", "*");
         res.json({ users });
       })
       .catch((err) => {
@@ -52,6 +54,7 @@ module.exports = (db) => {
     )
       .then((data) => {
         const new_user = data.rows[0];
+        res.set("Access-Control-Allow-Origin", "*");
         res.json({ new_user });
       })
       .catch((err) => {
