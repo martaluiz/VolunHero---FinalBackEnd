@@ -56,9 +56,8 @@ module.exports = (db) => {
 
 
   router.post("/create", (req, res) => {
-    let insert = `insert into services (user_id, category_id, description, created_at, updated_at, is_completed, volunteer_user_id)
-    VALUES( ${req.body.user_id}, ${req.body.category_id}, '${req.body.description}', to_timestamp(${Date.now()} / 1000.0),
-    to_timestamp(${Date.now()} / 1000.0), ${req.body.is_completed}, ${req.body.volunteer_user_id}) RETURNING *`;
+    let insert = `insert into services (user_id, category_id, description)
+    VALUES( ${req.body.user_id}, ${req.body.category_id}, '${req.body.description}') RETURNING *`;
     db.query(insert)
       .then(data => {
         const new_service = data.rows[0];
