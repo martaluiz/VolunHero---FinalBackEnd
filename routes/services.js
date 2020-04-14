@@ -13,6 +13,7 @@ module.exports = (db) => {
     db.query(`SELECT * from services;`)
       .then(data => {
         const services = data.rows;
+        res.set('Access-Control-Allow-Origin','*')
         res.json({ services });
       })
       .catch(err => {
