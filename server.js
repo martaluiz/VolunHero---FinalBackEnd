@@ -24,6 +24,7 @@ app.use(morgan("dev"));
 app.use(cors());
 // app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(
   "/styles",
   sass({

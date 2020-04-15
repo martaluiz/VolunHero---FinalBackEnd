@@ -52,7 +52,7 @@ module.exports = (db) => {
 
   router.post("/create", (req, res) => {
     let insert = `insert into services (user_id, category_id, description)
-    VALUES( ${req.body.user_id}, ${req.body.category_id}, '${req.body.description}') RETURNING *`;
+    VALUES( '${req.body.user_id}', '${req.body.category_id}', '${req.body.description}') RETURNING *`;
     db.query(insert)
       .then((data) => {
         const new_service = data.rows[0];
