@@ -33,23 +33,23 @@ module.exports = (db) => {
       });
   });
 
-  // router.get("/:info", (req, res) => {
-  //   db.query(
-  //     `SELECT (users.*), (services.*), categories.category as category
-  //   from services
-  //   JOIN users on users.id = user_id
-  //   JOIN categories on categories.id =category_id
-  //   where volunteer_user_id is NULL and is_completed IS FALSE;`
-  //   )
-  //     .then((data) => {
-  //       const services = data.rows;
-  //       res.set("Access-Control-Allow-Origin", "*");
-  //       res.json({ services });
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).json({ error: err.message });
-  //     });
-  // });
+  router.get("/withuserinfo", (req, res) => {
+    db.query(
+      `SELECT (users.*), (services.*), categories.category as category
+    from services
+    JOIN users on users.id = user_id
+    JOIN categories on categories.id =category_id
+    where volunteer_user_id is NULL and is_completed IS FALSE;`
+    )
+      .then((data) => {
+        const services = data.rows;
+        res.set("Access-Control-Allow-Origin", "*");
+        res.json({ services });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
 
   router.get("/:userId", (req, res) => {
     db.query(
