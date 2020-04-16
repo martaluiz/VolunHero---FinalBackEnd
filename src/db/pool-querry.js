@@ -1,4 +1,19 @@
-// const pool = require(`./index`);
+const pool = require(`./pool`);
+
+// this function gets services that are available for volunteers to pick up, with user information
+const getServicesAvailableForVolunteers = function (cb) {
+  pool
+    .query(
+      `SELECT (users.*), (services.*), categories.category as category
+from services
+JOIN users on users.id = user_id
+JOIN categories on categories.id =category_id
+where volunteer_user_id is NULL and is_completed IS FALSE`
+    )
+    .then((res) => cb(res.rows));
+};
+
+module.exports = { getServicesAvailableForVolunteers };
 
 // //gets volunteers
 // SELECT * FROM services WHERE services.volunteer_user_id is null;
