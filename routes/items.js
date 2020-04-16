@@ -10,11 +10,11 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * from line_items;`)
+    db.query(`SELECT * from items;`)
       .then((data) => {
-        const line_items = data.rows;
+        const items = data.rows;
         res.set("Access-Control-Allow-Origin", "*");
-        res.json({ line_items });
+        res.json({ items });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -22,13 +22,13 @@ module.exports = (db) => {
   });
 
   router.post("/insert", (req, res) => {
-    let insert = `INSERT INTO line_items (service_id, text)
+    let insert = `INSERT INTO items (service_id, text)
   VALUES ('${req.body.service_id}', '${req.body.text}') RETURNING *`;
     db.query(insert)
       .then((data) => {
-        const new_line_item = data.rows[0];
+        const new_item = data.rows[0];
         res.set("Access-Control-Allow-Origin", "*");
-        res.json({ new_line_item });
+        res.json({ new_item });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -36,11 +36,11 @@ module.exports = (db) => {
   });
 
   router.post("/delete", (req, res) => {
-    db.query(`DELETE FROM line_items WHERE id = '${req.body.id}' RETURNING *;`)
+    db.query(`DELETE FROM items WHERE id = '${req.body.id}' RETURNING *;`)
       .then((data) => {
-        const deleted_line_item = data.rows[0];
+        const deleted_item = data.rows[0];
         res.set("Access-Control-Allow-Origin", "*");
-        res.json({ deleted_line_item });
+        res.json({ deleted_item });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });

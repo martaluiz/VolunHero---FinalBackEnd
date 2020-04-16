@@ -18,12 +18,11 @@ where volunteer_user_id is NULL and is_completed IS FALSE`
 
 module.exports = { getServicesAvailableForVolunteers };
 
-
-SELECT (users.*), (services.*), categories.category as category
-from services
-JOIN users on users.id = user_id
-JOIN categories on categories.id =category_id
-WHERE volunteer_user_id =1;
+// SELECT (users.*), (services.*), categories.category as category
+// from services
+// JOIN users on users.id = user_id
+// JOIN categories on categories.id =category_id
+// WHERE volunteer_user_id =1;
 
 // //gets volunteers
 // SELECT * FROM services WHERE services.volunteer_user_id is null;
