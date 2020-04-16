@@ -9,7 +9,7 @@ const pool = new pg.Pool({
   database: "final",
 });
 
-client
+pool
   .connect()
   .catch((e) => console.log(`Error connecting to Postgres server:\n${e}`));
 

@@ -9,6 +9,9 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+
+    //---------------------GET--------------------------------------------------------------------------
+
   router.get("/", (req, res) => {
     db.query(`SELECT * from items;`)
       .then((data) => {
@@ -20,6 +23,8 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+    //---------------------POST--------------------------------------------------------------------------
 
   router.post("/insert", (req, res) => {
     let insert = `INSERT INTO items (service_id, text)
