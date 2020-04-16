@@ -5,7 +5,7 @@ VALUES
 04:05:06'),
   ('Marta Luiz', 'martaluiz@gmail.com', 'password', '555-250-1236', true, ' 688 Cambie St', 'Vancouver', 'BC', 'Canada', 'V6B 2M9', '2020-04-10
 04:05:06'),
-  ('Sruthi Korada', 'sruthikorada@gmail.com', 'password', '555-250-1235', false, '855 Homer St', 'BC', 'Vancouver', 'Canada', 'V6B 2W2', '2020-04-10
+  ('Sruthi Korada', 'sruthikorada@gmail.com', 'password', '555-250-1235', false, '855 Homer St', 'Vancouver', 'BC', 'Canada', 'V6B 2W2', '2020-04-10
 04:05:06'),
   ('Karen Johnson', 'karenjohnson@gmail.com', 'password', '555-250-1237', false, '901 Seymour St', 'Vancouver', 'BC', 'Canada', 'V6B 3M2', '2020-04-11
 04:05:06'),
@@ -61,7 +61,7 @@ VALUES
 06:05:06', true, 3);
 
 
-INSERT INTO line_items
+INSERT INTO items
   (
   service_id, text)
 VALUES
