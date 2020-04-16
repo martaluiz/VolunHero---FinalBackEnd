@@ -9,7 +9,10 @@
 const express = require("express");
 const router = express.Router();
 
+
 module.exports = (db) => {
+
+  //---------------------GET--------------------------------------------------------------------------
   router.get("/", (req, res) => {
     db.query(`SELECT * from services;`)
       .then((data) => {
@@ -52,6 +55,21 @@ module.exports = (db) => {
       });
   });
 
+  router.get("/volunteerservices", (req, res) => {
+    db.query(
+    `SELECT (users.*), (services.*), categories.category as category
+      from services JOIN users on users.id = user_id JOIN categories on categories.id =category_id WHERE volunteer_user_id =1;`
+    )
+      .then((data) => {
+        const services = data.rows;
+        res.set("Access-Control-Allow-Origin", "*");
+        res.json({ services });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   router.get("/:userId", (req, res) => {
     db.query(
       `select users.name, (services.*)
@@ -68,6 +86,8 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+    //---------------------POST--------------------------------------------------------------------------
 
   router.post("/create", (req, res) => {
     let insert = `insert into services (user_id, category_id, description)
@@ -111,7 +131,7 @@ module.exports = (db) => {
 
   router.post("/accepted", (req, res) => {
     db.query(
-      `UPDATE services SET volunteer_user_id  = ${req.body.user_id} WHERE id = ${req.body.id} RETURNING *;`
+      `UPDATE services SET volunteer_user_id  = '${req.body.user_id}' WHERE id = '${req.body.id}' RETURNING *;`
     )
       .then((data) => {
         const updated_service = data.rows[0];
@@ -123,11 +143,10 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/:volunteeredServices", (req, res) => {
+  router.post("/edit", (req, res) => {
     db.query(
-      `SELECT (users.*), (services.*), categories.category as category
-      from services JOIN users on users.id = user_id JOIN categories on categories.id =category_id WHERE volunteer_user_id =1;`)
-
+      `UPDATE services SET description = '${req.body.description}' WHERE id = '${req.body.id}' RETURNING *;`
+    )
       .then((data) => {
         const updated_service = data.rows[0];
         res.set("Access-Control-Allow-Origin", "*");

@@ -9,6 +9,9 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+
+    //---------------------GET--------------------------------------------------------------------------
+
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then((data) => {
@@ -37,7 +40,8 @@ module.exports = (db) => {
       });
   });
 
-  ///POST == create a new user/// this works!
+  //---------------------POST--------------------------------------------------------------------------
+
   router.post("/create", (req, res) => {
     let name = req.body.name;
     let email = req.body.email;
