@@ -108,5 +108,19 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/accepted", (req, res) => {
+    db.query(
+      `UPDATE services SET volunteer_user_id  = ${req.body.user_id} WHERE id = ${req.body.id} RETURNING *;`
+    )
+      .then((data) => {
+        const updated_service = data.rows[0];
+        res.set("Access-Control-Allow-Origin", "*");
+        res.json({ updated_service });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   return router;
 };
