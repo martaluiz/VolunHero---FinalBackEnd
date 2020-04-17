@@ -87,6 +87,25 @@ module.exports = (db) => {
       });
   });
 
+  router.get("/volunteer/:id", (req, res) => {
+    console.log("test");
+    db.query(
+      `select users.name, (services.*)
+     from services
+     join users ON users.id = user_id
+     where volunteer_user_id = '${req.params.id}' and is_completed = false;`
+    )
+      .then((data) => {
+        const volunteerservices = data.rows;
+        res.set("Access-Control-Allow-Origin", "*");
+        res.json({ volunteerservices });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+
     //---------------------POST--------------------------------------------------------------------------
 
   router.post("/create", (req, res) => {
