@@ -58,7 +58,11 @@ VALUES
   (
     4, 2, 'Please mow my lawn', '2020-04-13
 06:05:06', '2020-04-14
-06:05:06', true, 1);
+06:05:06', true, 1),
+  (
+    3, 4, 'Perscription pick up from london drugs', '2020-04-13
+06:05:06', '2020-04-14
+06:05:06', false, null);
 
 
 INSERT INTO items
