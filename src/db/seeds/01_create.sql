@@ -27,7 +27,7 @@ INSERT INTO services
   user_id, category_id, description, created_at, updated_at, is_completed, volunteer_user_id)
 VALUES
   (
-    4, 1, 'Please pick up groceries for me from Save-On Foods', '2020-04-20
+    3, 1, 'Please pick up groceries for me from Save-On Foods', '2020-04-20
 06:05:06', NOW(), false, null),
   (
     4, 2, 'I would like some help to paint my house', '2020-04-21

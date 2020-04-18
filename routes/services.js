@@ -103,6 +103,7 @@ module.exports = (db) => {
       });
   });
 
+
   router.post("/delete", (req, res) => {
     db.query(`DELETE FROM services WHERE id = ${req.body.id}RETURNING *;`)
       .then((data) => {
@@ -134,7 +135,7 @@ module.exports = (db) => {
       `UPDATE services SET volunteer_user_id  = '${req.body.user_id}' WHERE id = '${req.body.id}' RETURNING *;`
     )
       .then((data) => {
-        const updated_service = data.rows[0];
+        const updated_service = data.rows;
         res.set("Access-Control-Allow-Origin", "*");
         res.json({ updated_service });
       })
