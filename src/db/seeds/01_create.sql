@@ -1,9 +1,9 @@
 INSERT INTO users
   (name, email, password, phone, is_volunteer, address, city, province, country, postalcode, created_at)
 VALUES
-  ('Jasmine Singh', 'jasminesingh@gmail.com', 'password', '555-250-1234', true, '435 W Pender St', 'Vancouver', 'BC', 'Canada', 'V6B 1V2', '2020-04-10
-04:05:06'),
   ('Marta Luiz', 'martaluiz@gmail.com', 'password', '555-250-1236', true, ' 688 Cambie St', 'Vancouver', 'BC', 'Canada', 'V6B 2M9', '2020-04-10
+04:05:06'),
+  ('Jasmine Singh', 'jasminesingh@gmail.com', 'password', '555-250-1234', true, '435 W Pender St', 'Vancouver', 'BC', 'Canada', 'V6B 1V2', '2020-04-10
 04:05:06'),
   ('Sruthi Korada', 'sruthikorada@gmail.com', 'password', '555-250-1235', false, '855 Homer St', 'Vancouver', 'BC', 'Canada', 'V6B 2W2', '2020-04-10
 04:05:06'),
@@ -27,7 +27,7 @@ INSERT INTO services
   user_id, category_id, description, created_at, updated_at, is_completed, volunteer_user_id)
 VALUES
   (
-    4, 1, 'Please pick up groceries for me from Save-On Foods', '2020-04-20
+    3, 1, 'Please pick up groceries for me from Save-On Foods. I need; 3 X Banana, Butter, Milk, Bread, 3 X Apple, Cheese', '2020-04-20
 06:05:06', NOW(), false, null),
   (
     4, 2, 'I would like some help to paint my house', '2020-04-21
@@ -36,29 +36,33 @@ VALUES
     5, 3, 'Would someone be able to mow my lawn?', '2020-04-19
 06:05:06', NOW(), false, null),
   (
-    5, 4, 'Need someone to pick up my prescription', '2020-04-20
+    5, 4, 'Need someone to pick up my prescription, it is ready for pick up.', '2020-04-20
 06:05:06', NOW(), false, null),
   (
-    5, 1, 'My groceries at Costco please!', '2020-04-21
+    5, 1, 'My groceries at Costco please! I need; Toliet paper, Brocoli, Peanut butter, Bread, Tea Bags.', '2020-04-21
 06:05:06', NOW(), false, null),
   (
-    6, 1, 'Elderly need help with grocery please', '2020-04-22
+    6, 1, 'Elderly need help with grocery please. I need; Milk, Butter, Bread, Yogurt, Eggs.', '2020-04-22
 06:05:06', NOW(), false, null),
   (
-    6, 2, 'Need help to buld a shelf', '2020-04-23
+    6, 2, 'Need help to build a shelf', '2020-04-23
 06:05:06', NOW(), false, null),
   (
-    4, 1, 'Please pick up groceries for me from Save-On Foods', '2020-04-13
-06:05:06', '2020-04-14
-06:05:06', true, 1),
-  (
-    4, 4, 'Perscription pick up from london drugs', '2020-04-13
+    3, 1, 'Please pick up groceries for me from Save-On Foods. I need; 3 X Banana, Butter, Milk, Bread, 3 X Apple, Cheese', '2020-04-13
 06:05:06', '2020-04-14
 06:05:06', true, 2),
   (
+    3, 4, 'Perscription pick up from london drugs', '2020-04-13
+06:05:06', '2020-04-14
+06:05:06', true, 1),
+  (
     4, 2, 'Please mow my lawn', '2020-04-13
 06:05:06', '2020-04-14
-06:05:06', true, 3);
+06:05:06', true, 1),
+  (
+    3, 4, 'Perscription pick up from london drugs', '2020-04-13
+06:05:06', '2020-04-14
+06:05:06', false, null);
 
 
 INSERT INTO items
