@@ -27,7 +27,7 @@ INSERT INTO services
   user_id, category_id, description, created_at, updated_at, is_completed, volunteer_user_id)
 VALUES
   (
-    3, 1, 'Please pick up groceries for me from Save-On Foods. I need; 3 X Banana, Butter, Milk, Bread, 3 X Apple, Cheese', '2020-04-20
+    5, 3, 'Mow the lawn', '2020-04-20
 06:05:06', NOW(), false, null),
   (
     4, 2, 'I would like some help to paint my house', '2020-04-21
@@ -46,23 +46,20 @@ VALUES
 06:05:06', NOW(), false, null),
   (
     6, 2, 'Need help to build a shelf', '2020-04-23
-06:05:06', NOW(), false, null),
+06:05:06', NOW(), false, 1),
   (
     3, 1, 'Please pick up groceries for me from Save-On Foods. I need; 3 X Banana, Butter, Milk, Bread, 3 X Apple, Cheese', '2020-04-13
 06:05:06', '2020-04-14
-06:05:06', true, 2),
+06:05:06', false, 2),
   (
-    3, 4, 'Perscription pick up from london drugs', '2020-04-13
+    3, 4, 'Prescription pick up from london drugs', '2020-04-13
 06:05:06', '2020-04-14
 06:05:06', true, 1),
   (
     4, 2, 'Please mow my lawn', '2020-04-13
 06:05:06', '2020-04-14
-06:05:06', true, 1),
-  (
-    3, 4, 'Perscription pick up from london drugs', '2020-04-13
-06:05:06', '2020-04-14
-06:05:06', false, null);
+06:05:06', true, 1)
+  ;
 
 
 INSERT INTO items
